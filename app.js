@@ -4,9 +4,17 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mysql = require('mysql');
+var db = require('./db');
+
+db.connect(db.MODE_TEST, function(err) {
+  if (err) throw err;
+  console.log('You are now connected...');
+});
 
 var index = require('./routes/index');
-var users = require('./routes/users');
+var stores = require('./routes/stores');
+var beverages = require('./routes/beverages');
 
 var app = express();
 
@@ -23,7 +31,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
-app.use('/users', users);
+app.use('/stores', stores);
+app.use('/beverages', beverages);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
