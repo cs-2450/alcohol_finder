@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Utah - Alcohol Finder - Store and Brand locations</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+
+    <!-- Theme CSS -->
+    <link href="css/grayscale.min.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">
+                    <i class="fa fa-play-circle"></i> <span class="light">Utah</span> Alcohol Finder
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                <ul class="nav navbar-nav">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#about">About</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#alcohol">Beverages</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#store">Stores</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Intro Header -->
+    <header class="intro">
+        <div class="intro-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <h1 class="brand-heading">Alcohol Finder</h1>
+                        <p class="intro-text">Find brands, state run stores
+                            <br>and prices in Utah</p>
+                        <a href="#about" class="btn btn-circle page-scroll">
+                            <i class="fa fa-angle-double-down animated"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="container content-section text-center">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <h2>About This Alcohol finder</h2>
+                <p>This finder was created using data found on the <a href="https://abc.utah.gov/index.html" target="_blank">Department of Alcohol Beverage Control</a> to better search for 
+                    prices, brands and types of alcoholic beverages in the State of Utah.</p>
+                <p>It was created as a Software Engineering project.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Alcohol Finder Section -->
+    <section id="alcohol" class="content-section text-center">
+        <div class="download-section">
+            <div class="container">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <h2>Search Stores for your beverage</h2>
+                    Enter in the Type of Beverage you need to bring up prices and locations
+                    <div>
+                        <form method="get" name="beverages" id="beverages" action="/beverages">
+                        <dl>
+                            <dt>
+				<label for="beveragesearch">Search By Beverage</label>
+			</dt>
+			<dd><input id="beveragesearch" name="description" type="text" /></dd>
+                        </dl>
+                        <div id="submit_beverage">
+			<button type="submit" class="btn btn-default btn-primary">Submit</button>
+                    </div>
+		</form>
+                </div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Store Finder Section -->
+    <section id="store" class="container content-section text-center">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <h2>Find Stores in the State Of Utah</h2>
+                <div>
+                        <form method="get" name="store" id="stores" action="/stores">
+                        <dl>
+                            <dt>
+				<label for="storesearch">Search By Store</label>
+			</dt>
+			<dd><select size="1" name="storesearch" id="storesearch">
+					<optgroup label="stores">
+						<option value="store1">Find Store One</option>
+						<option value="store2">Find Store Two</option>
+						<option value="store3">Find Store Three</option>
+					</optgroup>
+                            </select>
+                        </dd>
+                        </dl>
+                        <div id="submit_stores">
+			<button type="submit" class="btn btn-default btn-primary">Submit</button>
+                    </div>
+		</form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <div id="map"></div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+            <p>Copyright &copy; 2017</p>
+            <p><h5>Some images courtesy of <a href="http://gratisography.com/" target="_blank">Gratisography</a></h5></p>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="vendor/jquery/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script>
+      function initMap() {
+        var uluru = {lat: 40.6927692, lng: -111.9427318};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 4,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+      }
+    </script>
+
+    <!-- Google Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCSfzeMNowRwPDgDRUNDv88uzH10XmX6BQ&sensor=false"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="js/grayscale.min.js"></script>
+
+</body>
+
+</html>
