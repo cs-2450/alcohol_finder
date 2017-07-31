@@ -106,19 +106,38 @@
                     <h2>Search Stores for your beverage</h2>
                     Enter in the Type of Beverage you need to bring up prices and locations
                     <div>
-                        <form method="get" name="beverages" id="beverages" action="/beverages">
+                        <form method="get" name="beverage" id="beverage" action="#alcohol">
                         <dl>
                             <dt>
 				<label for="beveragesearch">Search By Beverage</label>
 			</dt>
 			<dd><input id="beveragesearch" name="description" type="text" /></dd>
                         </dl>
-                        <div id="submit_beverage">
+                    <div id="submit_beverage">
 			<button type="submit" class="btn btn-default btn-primary">Submit</button>
                     </div>
+                            <div id="beverage-table"></div>        
+                           
 		</form>
                 </div>
-                    
+                     <script>
+                        function beverageTable(str) {
+                        var xhttp;    
+                        if (str == "") {
+                            document.getElementById("beverage-table").innerHTML = "";
+                           return;
+                         }
+                        xhttp = new XMLHttpRequest();
+                        xhttp.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                          document.getElementById("beverage-table").innerHTML = this.responseText;
+                        }
+                        };
+                        xhttp.open("GET", "/beverage?description=_"+str, true);
+                        xhttp.send();
+                        }
+                        
+                      </script> 
                 </div>
             </div>
         </div>
@@ -130,13 +149,13 @@
             <div class="col-lg-8 col-lg-offset-2">
                 <h2>Find Stores in the State Of Utah</h2>
                 <div>
-                        <form method="get" name="store" id="stores" action="/stores">
+                <form method="get" name="store" id="store" action="#store">
                         <dl>
                             <dt>
 				<label for="storesearch">Search By Store</label>
 			</dt>
-			<dd><select size="1" name="storesearch" id="storesearch">
-					<optgroup label="stores">
+			<dd><select size="1" name="city" id="city">
+					<optgroup label="store">
 						<option value="store1">Find Store One</option>
 						<option value="store2">Find Store Two</option>
 						<option value="store3">Find Store Three</option>
@@ -148,6 +167,25 @@
 			<button type="submit" class="btn btn-default btn-primary">Submit</button>
                     </div>
 		</form>
+                    <div id="store-table"></div>
+                     <script>
+                        function storeTable(str) {
+                        var xhttp;    
+                        if (str == "") {
+                            document.getElementById("store-table").innerHTML = "";
+                           return;
+                         }
+                        xhttp = new XMLHttpRequest();
+                        xhttp.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                          document.getElementById("store-table").innerHTML = this.responseText;
+                        }
+                        };
+                        xhttp.open("GET", "/store?city=_"+str, true);
+                        xhttp.send();
+                        }
+                        
+                      </script> 
                 </div>
             </div>
         </div>
