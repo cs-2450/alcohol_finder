@@ -8,12 +8,23 @@
   "dependencies": {
     "async": "^2.5.0",
     "body-parser": "~1.17.1",
+    "bootstrap": "^3.3.7",
+    "browser-sync": "^2.13.0",
+    "consolidate": "^0.14.5",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.3",
     "express": "~4.15.2",
+    "font-awesome": "^4.6.3",
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^2.0.10",
+    "gulp-header": "^1.8.7",
+    "gulp-less": "^3.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.5.4",
+    "jquery": "^1.11.3",
     "morgan": "~1.8.1",
     "mysql": "^2.14.0",
-    "pug": "~2.0.0-beta11",
-    "serve-favicon": "~2.4.2"
+    "serve-favicon": "~2.4.2",
+    "swig": "^1.4.2"
   }
 }
