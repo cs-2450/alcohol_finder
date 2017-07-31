@@ -32,6 +32,11 @@
 </head>
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+    <!-- jQuery -->
+    <script src="/vendor/jquery/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
 
     <!-- Navigation -->
     <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
@@ -106,38 +111,31 @@
                     <h2>Search Stores for your beverage</h2>
                     Enter in the Type of Beverage you need to bring up prices and locations
                     <div>
-                        <form method="get" name="beverage" id="beverage" action="#alcohol">
                         <dl>
                             <dt>
-				<label for="beveragesearch">Search By Beverage</label>
-			</dt>
-			<dd><input id="beveragesearch" name="description" type="text" /></dd>
+				                        <label for="beveragesearch">Search By Beverage</label>
+			                      </dt>
+			                      <dd><input id="beveragesearch" name="description" type="text" /></dd>
                         </dl>
-                    <div id="submit_beverage">
-			<button type="submit" class="btn btn-default btn-primary">Submit</button>
+                        <div>
+			                      <button id="submit_beverage" class="btn btn-default btn-primary">Submit</button>
+                        </div>
+                        <div id="beverage-table"></div>        
                     </div>
-                            <div id="beverage-table"></div>        
-                           
-		</form>
-                </div>
-                     <script>
-                        function beverageTable(str) {
-                        var xhttp;    
-                        if (str == "") {
-                            document.getElementById("beverage-table").innerHTML = "";
-                           return;
-                         }
-                        xhttp = new XMLHttpRequest();
-                        xhttp.onreadystatechange = function() {
-                        if (this.readyState == 4 && this.status == 200) {
-                          document.getElementById("beverage-table").innerHTML = this.responseText;
-                        }
+                    <script>
+                        document.getElementById("submit_beverage").onclick = function() {
+                            var str = document.getElementById("beveragesearch").value
+                            var xhttp;    
+                            xhttp = new XMLHttpRequest();
+                            xhttp.onreadystatechange = function() {
+                                if (this.readyState == 4 && this.status == 200) {
+                                  document.getElementById("beverage-table").innerHTML = this.responseText;
+                                }
+                            };
+                            xhttp.open("GET", "/beverages?description="+str, true);
+                            xhttp.send();
                         };
-                        xhttp.open("GET", "/beverage?description=_"+str, true);
-                        xhttp.send();
-                        }
-                        
-                      </script> 
+                    </script> 
                 </div>
             </div>
         </div>
@@ -202,11 +200,6 @@
         </div>
     </footer>
 
-    <!-- jQuery -->
-    <script src="vendor/jquery/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 
     <!-- Plugin JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
