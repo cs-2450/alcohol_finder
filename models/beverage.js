@@ -18,7 +18,7 @@ exports.create = function(params, done) {
 }
 
 exports.search = function(description, done) {
-  db.get().query('SELECT * FROM beverages WHERE beverages.description LIKE ?', description + '%', function(err, result) {
+  db.get().query('SELECT * FROM beverages WHERE beverages.description LIKE ?', '%' + description + '%', function(err, result) {
     if (err) throw err;
     done(result);
   });
