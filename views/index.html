@@ -33,7 +33,7 @@ table.bevTable {
   font-family: "Comic Sans MS",cursive,sans-serif;
   border: 2px solid #4F7849;
   background-color: #EEEEEE;
-  width: 90%;
+  width: 100%;
   text-align: center;
   border-collapse: collapse;
 }
@@ -167,11 +167,11 @@ table.bevTable tfoot td {
                     </div>
                      
                 </div>
-                
-            </div>
-            <p></p>
+                <p>&nbsp</p>
 
             <div id="beverage-table"></div>
+            </div>
+            
                     <script>
                         
                         document.getElementById("submit_beverage").onclick = function() {
@@ -188,11 +188,11 @@ table.bevTable tfoot td {
                         };
                         
                         function createBeverageTable(beverageJson) {
-                          var b = "No results found";
+                          var b = "<p>&nbsp</p><p>&nbsp</p><p>&nbsp</p>No results found";
                           if(beverageJson.length > 0){
-                            var b = "<table class=\"bevTable\"><thead><tr><th>ID</th><th>Description</th><th>Category</th><th>Size</th><th>Product Code</th><th>Price</th><th>Stat</th><th>Special</th><th>Special Price</th></tr></thead>";
+                            var b = "<p>&nbsp</p><table class=\"bevTable\"><thead><tr><th>ID</th><th>Description</th><th>Category</th><th>Size</th><th>Product Code</th><th>Price</th><th>Stat</th><th>Special</th><th>Special Price</th></tr></thead>";
                           
-                            b = b.concat("<tbody>", beverageJson.length);
+                            b = b.concat("<tbody>");
                              for(var i = 0; i < beverageJson.length; i++){
                                 b = b.concat("<tr><td>",beverageJson[i].id,"</td>");
                                 b = b.concat("<td>",beverageJson[i].description,"</td>");
