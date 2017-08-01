@@ -28,6 +28,49 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <style type="text/css">
+table.bevTable {
+  font-family: "Comic Sans MS",cursive,sans-serif;
+  border: 2px solid #4F7849;
+  background-color: #EEEEEE;
+  width: 90%;
+  text-align: center;
+  border-collapse: collapse;
+}
+table.bevTable td, table.bevTable th {
+  border: 1px solid #4F7849;
+  padding: 3px 2px;
+}
+table.bevTable tbody td {
+  font-size: 14px;
+  font-weight: bold;
+  color: #4F7849;
+}
+table.bevTable tr:nth-child(even) {
+  background: #CEE0CC;
+}
+table.bevTable thead {
+  background: #4F7849;
+  background: -moz-linear-gradient(top, #7b9a76 0%, #60855b 66%, #4F7849 100%);
+  background: -webkit-linear-gradient(top, #7b9a76 0%, #60855b 66%, #4F7849 100%);
+  background: linear-gradient(to bottom, #7b9a76 0%, #60855b 66%, #4F7849 100%);
+  border-bottom: 1px solid #444444;
+}
+table.bevTable thead th {
+  font-size: 15px;
+  font-weight: bold;
+  color: #FFFFFF;
+  text-align: left;
+  border-left: 2px solid #D0E4F5;
+}
+table.bevTable thead th:first-child {
+  border-left: none;
+}
+
+table.bevTable tfoot td {
+  font-size: 21px;
+}
+    </style>
 
 </head>
 
@@ -120,25 +163,55 @@
                         <div>
 			                      <button id="submit_beverage" class="btn btn-default btn-primary">Submit</button>
                         </div>
-                        <div id="beverage-table"></div>        
+                               
                     </div>
+                     
+                </div>
+                
+            </div>
+            <p></p>
+
+            <div id="beverage-table"></div>
                     <script>
+                        
                         document.getElementById("submit_beverage").onclick = function() {
                             var str = document.getElementById("beveragesearch").value
                             var xhttp;    
                             xhttp = new XMLHttpRequest();
                             xhttp.onreadystatechange = function() {
                                 if (this.readyState == 4 && this.status == 200) {
-                                  document.getElementById("beverage-table").innerHTML = this.responseText;
+                                  document.getElementById("beverage-table").innerHTML = createBeverageTable(JSON.parse(this.responseText));
                                 }
                             };
                             xhttp.open("GET", "/beverages?description="+str, true);
                             xhttp.send();
                         };
+                        
+                        function createBeverageTable(beverageJson) {
+                          var b = "No results found";
+                          if(beverageJson.length > 0){
+                            var b = "<table class=\"bevTable\"><thead><tr><th>ID</th><th>Description</th><th>Category</th><th>Size</th><th>Product Code</th><th>Price</th><th>Stat</th><th>Special</th><th>Special Price</th></tr></thead>";
+                          
+                            b = b.concat("<tbody>", beverageJson.length);
+                             for(var i = 0; i < beverageJson.length; i++){
+                                b = b.concat("<tr><td>",beverageJson[i].id,"</td>");
+                                b = b.concat("<td>",beverageJson[i].description,"</td>");
+                                b = b.concat("<td>",beverageJson[i].category,"</td>");
+                                b = b.concat("<td>",beverageJson[i].size,"</td>");
+                                b = b.concat("<td>",beverageJson[i].product_code,"</td>");
+                                b = b.concat("<td>",beverageJson[i].price,"</td>");
+                                b = b.concat("<td>",beverageJson[i].stat,"</td>");
+                                b = b.concat("<td>",beverageJson[i].on_special,"</td>");
+                                b = b.concat("<td>",beverageJson[i].special_price,"</td></tr>");
+                            }
+                            b = b.concat("</tbody></table>");
+                         }
+                            return b;
+                        }
+                        
                     </script> 
-                </div>
-            </div>
         </div>
+        
     </section>
 
     <!-- Store Finder Section -->
