@@ -1,8 +1,12 @@
 var request = require('request');
 var cheerio = require('cheerio');
 var beverage_model = require('../models/beverage.js');
+var db = require('../db.js');
 
-//var cheerioTableParser = require('cheerioTableParser');
+db.connect(db.MODE_TEST, function(err) {
+  if (err) throw err;
+  console.log('You are now connected...');
+});
 
 request('https://webapps2.abc.utah.gov/Production/OnlinePriceList/DisplayPriceList.aspx', function(err, resp, body){
     if(!err && resp.statusCode == 200)
@@ -51,7 +55,7 @@ function getProduct_Code($, row)
 
 function getPrice($, row)
 {
-    return $(row[6]).text().trim();
+    return parseFloat($(row[6]).text().trim().replace(/\$/g,''));
 }
 
 function getStat($, row)
@@ -74,5 +78,5 @@ function getOn_Special($, row)
 
 function getSpecial_Price($, row)
 {
-    return "";
+    return "0";
 }
