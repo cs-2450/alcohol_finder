@@ -175,7 +175,7 @@ table.bevTable tfoot td {
                     <script>
                         
                         document.getElementById("submit_beverage").onclick = function() {
-                            var str = document.getElementById("beveragesearch").value
+                            var str = document.getElementById("beveragesearch").value;
                             var xhttp;    
                             xhttp = new XMLHttpRequest();
                             xhttp.onreadystatechange = function() {
@@ -220,42 +220,122 @@ table.bevTable tfoot td {
             <div class="col-lg-8 col-lg-offset-2">
                 <h2>Find Stores in the State Of Utah</h2>
                 <div>
-                <form method="get" name="store" id="store" action="#store">
+                
                         <dl>
                             <dt>
 				<label for="storesearch">Search By Store</label>
 			</dt>
-			<dd><select size="1" name="city" id="city">
-					<optgroup label="store">
-						<option value="store1">Find Store One</option>
-						<option value="store2">Find Store Two</option>
-						<option value="store3">Find Store Three</option>
-					</optgroup>
+			<dd><select size="1" name="city" id="storesearch">
+				<option value="Alta">Alta</option>
+				<option value="Alton">Alton</option>
+                                <option value="Beaver">Beaver</option>
+				<option value="Bicknell">Bicknell</option>
+				<option value="Bountiful">Bountiful</option>
+				<option value="Brianhead">Brianhead</option>
+				<option value="Brigham">Brigham</option>
+				<option value="Bryce Canyon">Bryce Canyon</option>
+				<option value="Bullfrog">Bullfrog</option>
+				<option value="Caste Dale">Caste Dale</option>
+				<option value="Cedar City">Cedar City"</option>
+				<option value="Centerfield">Centerfield</option>
+				<option value="Coalville">Coalville</option>
+				<option value="Cottonwood Heights">Cottonwood Heights</option>
+				<option value="Delta">Delta</option>
+				<option value="Draper">Draper</option>
+				<option value="Duchesne">Duchesne</option>
+				<option value="Eden">Eden</option>
+				<option value="Ephraim">Ephraim</option>
+				<option value="Escalante">Escalante</option>
+				<option value="Eureka">Eureka</option>
+				<option value="Filmore">Filmore</option>
+				<option value="Green River">Green River</option>
+				<option value="Harrisville">Harrisville</option>
+				<option value="Heber">Heber</option>
+				<option value="Helper">Helper</option>
+				<option value="Holladay">Holladay</option>
+				<option value="Hurricane">Hurricane</option>
+				<option value="Kamas">Kamas</option>
+				<option value="Kanab">Kanab</option>
+				<option value="Layton">Layton</option>
+				<option value="Logan">Logan</option>
+				<option value="Magna">Magna</option>
+				<option value="Marysvale">Marysvale</option>
+				<option value="Midvale">Midvale</option>
+				<option value="Milford">Milford</option>
+				<option value="Moab">Moab</option>
+				<option value="Monticello">Monticello</option>
+				<option value="Mount Pleasant">Mount Pleasant</option>
+				<option value="Murray">Murray</option>
+				<option value="Nephi">Nephi</option>
+				<option value="Ogden">Ogden</option>
+				<option value="Orem">Orem</option>
+				<option value="Panquitch">Panquitch</option>
+				<option value="Park City">Park City</option>
+				<option value="Parowan">Parowan</option>
+				<option value="Payson">Payson</option>
+				<option value="Pleasant Grove">leasant Grove</option>
+				<option value="Price">Price</option>
+				<option value="Provo">Provo</option>
+				<option value="Richfield">Richfield</option>
+				<option value="Richmond">Richmond</option>
+				<option value="Riverton">Riverton</option>
+				<option value="Roosevelt">Roosevelt</option>
+				<option value="Roy">Roy</option>
+				<option value="Salina">Salina</option>
+				<option value="Salt Lake">Salt Lake</option>
+				<option value="Sandy">Sandy</option>
+				<option value="Solitude">Solitude</option>
+				<option value="Snowbird">Snowbird</option>
+				<option value="Springdale">Springdale</option>
+				<option value="Springville">Springville</option>
+                                <option value="St. George">St. George</option>
+				<option value="Sunnyside">Sunnyside</option>
+				<option value="Taylorsville">Taylorsville</option>
+				<option value="Tooele">Tooele</option>
+				<option value="Tremonton">Tremonton</option>
+				<option value="Vernal">Vernal</option>
+				<option value="West Valley">West Valley</option>									     
                             </select>
                         </dd>
                         </dl>
-                        <div id="submit_stores">
-			<button type="submit" class="btn btn-default btn-primary">Submit</button>
+                        <div>
+			<button id="submit_stores" type="submit" class="btn btn-default btn-primary">Submit</button>
                     </div>
-		</form>
+		
                     <div id="store-table"></div>
                      <script>
-                        function storeTable(str) {
-                        var xhttp;    
-                        if (str == "") {
-                            document.getElementById("store-table").innerHTML = "";
-                           return;
-                         }
-                        xhttp = new XMLHttpRequest();
-                        xhttp.onreadystatechange = function() {
-                        if (this.readyState == 4 && this.status == 200) {
-                          document.getElementById("store-table").innerHTML = this.responseText;
-                        }
-                        };
-                        xhttp.open("GET", "/store?city=_"+str, true);
-                        xhttp.send();
-                        }
+                        document.getElementById("submit_stores").onclick = function() {
+                            var str = document.getElementById("storesearch").value;
+                            var xhttp;    
+                            xhttp = new XMLHttpRequest();
+                            xhttp.onreadystatechange = function() {
+                                if (this.readyState == 4 && this.status == 200) {
+                                  document.getElementById("store-table").innerHTML = createStoreTable(JSON.parse(this.responseText));
+                                }
+                            };
+                            xhttp.open("GET", "/stores?city="+str, true);
+                            xhttp.send();
+                        };       
                         
+                        function createStoreTable(storeJson) {
+                          var b = "<p>&nbsp</p>No Stores in that Town";
+                          if(storeJson.length > 0){
+                            var b = "<p>&nbsp</p><table class=\"bevTable\"><thead><tr><th>ID</th><th>Number</th><th>Name</th><th>Address</th><th>City</th><th>Phone</th><th>Hours</th></tr></thead>";
+                          
+                            b = b.concat("<tbody>");
+                             for(var i = 0; i < storeJson.length; i++){
+                                b = b.concat("<tr><td>",storeJson[i].id,"</td>");
+                                b = b.concat("<td>",storeJson[i].store_number,"</td>");
+                                b = b.concat("<td>",storeJson[i].store_name,"</td>");
+                                b = b.concat("<td>",storeJson[i].street_address,"</td>");
+                                b = b.concat("<td>",storeJson[i].city,"</td>");
+                                b = b.concat("<td>",storeJson[i].phone_number,"</td>");
+                                b = b.concat("<td>",storeJson[i].hours,"</td>");
+                            }
+                            b = b.concat("</tbody></table>");
+                         }
+                            return b;
+                        }
                       </script> 
                 </div>
             </div>

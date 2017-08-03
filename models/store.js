@@ -17,8 +17,15 @@ exports.create = function(params, done) {
   });
 }
 
-exports.search = function(store_name, done) {
-  db.get().query('SELECT * FROM stores WHERE stores.store_name LIKE ?', store_name + '%', function(err, result) {
+//exports.search = function(store_name, done) {
+//  db.get().query('SELECT * FROM stores WHERE stores.store_name LIKE ?', store_name + '%', function(err, result) {
+//    if (err) throw err;
+//    done(result);
+//  });
+//}
+exports.search = function(city, done) {
+  
+  db.get().query('SELECT * FROM stores WHERE stores.city LIKE ?', "'%" + city + "%'" , function(err, result) {
     if (err) throw err;
     done(result);
   });
