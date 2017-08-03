@@ -5,7 +5,7 @@ var Store = require('../models/store.js');
 /* INDEX */
 /* GET /stores */
 router.get('/', function(req, res, next) {
-  Store.search(req.query.store_name, function(result) {
+  Store.search(req.query.city, function(result) {
     res.send(result);
   });
 });
